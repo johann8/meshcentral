@@ -6,7 +6,15 @@ FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
 #install dependencies
-RUN apt-get update && apt-get install -y nodejs npm nano mongo-tools && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y nodejs npm nano \
+ && apt-get install curl -y \
+ && curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
+ && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
+ && apt-get update \
+ && apt-get install mongodb-org-tools -y \
+ && apt-get --purge autoremove curl -y \
+ && && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 #Add non-root user, add installation directories and assign proper permissions
 RUN mkdir -p /opt/meshcentral
