@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y nodejs npm nano \
  && apt-get update \
  && apt-get install mongodb-org-tools -y \
  && apt-get --purge autoremove curl -y \
- && && apt-get clean \
+ && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
 #Add non-root user, add installation directories and assign proper permissions
