@@ -37,13 +37,12 @@ services:
   meshcentral:
     restart: always
     container_name: meshcentral
-    # image: typhonragewind/meshcentral
     image: johann8/meshcentral
     ports:
       - 127.0.0.1:8084:443  #MeshCentral will moan and try everything not to use port 80, but you can also use it if you so desire, just change the config.json according to your needs
     environment:
-      - HOSTNAME=mc.reduktor.de    #your hostname
-      - REVERSE_PROXY=mx01.reduktor.de    #set to your reverse proxy IP if you want to put meshcentral behind a reverse proxy
+      - HOSTNAME=my.domain.com    #your hostname
+      - REVERSE_PROXY=false    #set to your reverse proxy IP if you want to put meshcentral behind a reverse proxy
       - REVERSE_PROXY_TLS_PORT=443
       - IFRAME=false    #set to true if you wish to enable iframe support
       - ALLOW_NEW_ACCOUNTS=false    #set to false if you want disable self-service creation of new accounts besides the first (admin)
@@ -52,9 +51,9 @@ services:
     networks:
       - meshcentralNet
     volumes:
-      - ./meshc-data:/opt/meshcentral/meshcentral-data    #config.json and other important files live here. A must for data persistence
-      - ./meshc-user_files:/opt/meshcentral/meshcentral-files    #where file uploads for users live
-      - ./meshc-backup:/opt/meshcentral/meshcentral-backup
+      - "./meshc-data:/opt/meshcentral/meshcentral-data"    #config.json and other important files live here. A must for data persistence
+      - "./meshc-user_files:/opt/meshcentral/meshcentral-files"    #where file uploads for users live
+      - "./meshc-backup:/opt/meshcentral/meshcentral-backup"
     env_file:
       - ".meshcentral.env"
     depends_on:
@@ -62,17 +61,12 @@ services:
 
   # mongodb container for meshcentral
   mongodb:
-    #image: mongo:4
     image: mongo:latest
     container_name: mongodb
-    #command: "--serviceExecutor adaptive"
     restart: "unless-stopped"
     volumes:
       - "./mongodb-data:/data/db"
       - "./mongodb-config:/data/configdb"
-    #  - "./mongodb-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
-    #env_file:
-    #  - ".mongodb.env"
     networks:
       - meshcentralNet
 ```
