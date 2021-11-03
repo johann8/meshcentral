@@ -2,8 +2,8 @@
 # How to create a docker image for meshcentral
 
 ```
-git clone https://github.com/Ylianst/MeshCentral.git
-cd MeshCentral/docker
+git clone https://github.com/johann8/meshcentral.git 
+cd meshcentral
 docker build -t meshcentral .
 ```
 
