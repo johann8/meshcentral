@@ -28,7 +28,7 @@ if [ -f "meshcentral-data/config.json" ]
         node node_modules/meshcentral --cert "$HOSTNAME"     
 fi
 
-# Set Time Zone
+# Set timezone variable
 if  [ ! ${TZ} ]; then
 
   # delete file timezone if exist
