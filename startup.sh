@@ -29,7 +29,7 @@ if [ -f "meshcentral-data/config.json" ]
 fi
 
 # Set timezone variable
-if  [ ! ${TZ} ]; then
+if  [ ! -z ${TZ} ]; then
 
   # delete file timezone if exist
   if [ -f /etc/timezone ] ; then
