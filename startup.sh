@@ -1,13 +1,14 @@
 #!/bin/bash
 
-export NODE_ENV=production
-
+#export NODE_ENV=production
+export NODE_ENV
 export HOSTNAME
 export REVERSE_PROXY
 export REVERSE_PROXY_TLS_PORT
 export IFRAME
 export ALLOW_NEW_ACCOUNTS
 export WEBRTC
+export TZ
 
 if [ -f "meshcentral-data/config.json" ]
     then
@@ -26,3 +27,20 @@ if [ -f "meshcentral-data/config.json" ]
         fi
         node node_modules/meshcentral --cert "$HOSTNAME"     
 fi
+
+# Set Time Zone
+if  [ ! ${TZ} ]; then
+
+  # delete file timezone if exist
+  if [ -f /etc/timezone ] ; then
+    rm /etc/timezone 
+  fi
+
+  # delete file localtime if exist and create new one
+  if [ -f /etc/localtime ] ; then
+    rm /etc/localtime
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+  fi
+
+fi
+
