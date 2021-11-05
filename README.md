@@ -47,7 +47,7 @@ services:
       - IFRAME=false    #set to true if you wish to enable iframe support
       - ALLOW_NEW_ACCOUNTS=false    #set to false if you want disable self-service creation of new accounts besides the first (admin)
       - WEBRTC=true  #set to true to enable WebRTC - per documentation it is not officially released with meshcentral, but is solid enough to work with. Use with caution
-      - TZ="Europe/Berlin"
+      - TZ=${TZ}
     networks:
       - meshcentralNet
     volumes:
@@ -55,7 +55,7 @@ services:
       - "./meshc-user_files:/opt/meshcentral/meshcentral-files"    #where file uploads for users live
       - "./meshc-backup:/opt/meshcentral/meshcentral-backup"
     env_file:
-      - ".meshcentral.env"
+      - ".env"
     depends_on:
       - mongodb
 
@@ -72,3 +72,5 @@ services:
 ```
 
 If you do not wish to use the prebuilt image, you can also easily build it yourself. Just make sure to include **config.json.template** and **startup.sh** if you do not change the Dockerfile.
+
+[- Dockerhub - johann8/meshcentral](https://hub.docker.com/repository/docker/johann8/meshcentral)
