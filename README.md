@@ -7,9 +7,9 @@ Docker Version of the amazing [MeshCentral software](https://github.com/Ylianst/
 
 While easier to setup and get up and running, you should still peer through the very informative official guides:
 
-[- MeshCentral2InstallGuide](https://info.meshcentral.com/downloads/MeshCentral2/MeshCentral2InstallGuide.pdf)
+* [MeshCentral2InstallGuide](https://info.meshcentral.com/downloads/MeshCentral2/MeshCentral2InstallGuide.pdf)
 
-[- MeshCentral2UserGuide](https://info.meshcentral.com/downloads/MeshCentral2/MeshCentral2UserGuide.pdf)
+* [MeshCentral2UserGuide](https://info.meshcentral.com/downloads/MeshCentral2/MeshCentral2UserGuide.pdf)
 
 ## Disclaimer
 
@@ -73,4 +73,6 @@ services:
 
 If you do not wish to use the prebuilt image, you can also easily build it yourself. Just make sure to include **config.json.template** and **startup.sh** if you do not change the Dockerfile.
 
-[- Dockerhub - johann8/meshcentral](https://hub.docker.com/repository/docker/johann8/meshcentral)
+## Links
+
+* [Dockerhub - johann8/meshcentral](https://hub.docker.com/repository/docker/johann8/meshcentral)
