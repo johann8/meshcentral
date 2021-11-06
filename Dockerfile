@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y nodejs npm nano \
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 0.9.44
+# Update to Version 0.9.45
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
