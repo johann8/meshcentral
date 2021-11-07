@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y curl nano \
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 0.9.45
+# Update to Version 0.9.46
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
