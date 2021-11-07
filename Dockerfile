@@ -6,12 +6,13 @@ FROM ubuntu:latest
 ARG DEBIAN_FRONTEND=noninteractive
 
 #install dependencies
-RUN apt-get update && apt-get install -y nodejs npm nano \
- && apt-get install curl -y \
+#RUN apt-get update && apt-get install -y nodejs npm nano \
+RUN apt-get update && apt-get install -y curl nano \
  && curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
  && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
+ && curl -sL https://deb.nodesource.com/setup_14.x | bash - \ 
  && apt-get update \
- && apt-get install mongodb-org-tools -y \
+ && apt-get install mongodb-org-tools nodejs -y \
  && apt-get --purge autoremove curl -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
