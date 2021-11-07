@@ -1,0 +1,44 @@
+version: '3.1'
+networks:
+  meshcentralNet:
+    ipam:
+      driver: default
+      config:
+        - subnet: ${IPV4_NETWORK:-172.26.8}.0/24
+
+services:
+  meshcentral:
+    restart: always
+    container_name: meshcentral
+    image: johann8/meshcentral
+    ports:
+      - 127.0.0.1:8084:443  #MeshCentral will moan and try everything not to use port 80, but you can also use it if you so desire, just change the config.json according to your needs
+    environment:
+      - HOSTNAME=${HOSTNAME}
+      - REVERSE_PROXY=${REVERSE_PROXY}
+      - REVERSE_PROXY_TLS_PORT=${REVERSE_PROXY_TLS_PORT}
+      - IFRAME=${IFRAME}
+      - ALLOW_NEW_ACCOUNTS=${ALLOW_NEW_ACCOUNTS}
+      - WEBRTC=${WEBRTC}
+      - TZ=${TZ}
+    networks:
+      - meshcentralNet
+    volumes:
+      - "./meshc-data:/opt/meshcentral/meshcentral-data"           # config.json and other important files live here. A must for data persistence
+      - "./meshc-user_files:/opt/meshcentral/meshcentral-files"    # where file uploads for users live
+      - "./meshc-backup:/opt/meshcentral/meshcentral-backup"       # backup folder
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+
+  # mongodb container for meshcentral
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: "unless-stopped"
+    volumes:
+      - "./mongodb-data:/data/db"
+      - "./mongodb-config:/data/configdb"
+    networks:
+      - meshcentralNet
