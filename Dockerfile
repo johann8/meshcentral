@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping \
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 0.9.81
+# Update to Version 0.9.82
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
