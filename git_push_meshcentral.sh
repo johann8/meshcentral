@@ -2,8 +2,8 @@
 set -x
 
 # set variables
-DOCKER_VERSION=1.0.36
-MECHCENTRAL_VERSION=0.9.97
+DOCKER_VERSION=1.0.44
+MECHCENTRAL_VERSION=1.0.12
 PATH_VERSION_TXT="/projects/meshcentral/version.txt"
 PATH_DOCKER_FILE="/projects/meshcentral/Dockerfile"
 PATH_BUILD_SCRIPT="/projects/meshcentral/build_image.sh"

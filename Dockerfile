@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping \
  && apt-get install -y curl \ 
  && curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
  && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
- && curl -sL https://deb.nodesource.com/setup_14.x | bash - \ 
+ && curl -sL https://deb.nodesource.com/setup_16.x | bash - \ 
  && apt-get update \
  && apt-get install mongodb-org-tools nodejs -y \
  && apt-get --purge autoremove curl -y \
