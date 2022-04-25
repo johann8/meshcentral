@@ -7,14 +7,19 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 #install dependencies
 #RUN apt-get update && apt-get install -y nodejs npm nano \
-RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping \
+RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
  && apt-get install -y curl \ 
  && curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
  && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
+ && cd /tmp \
  && curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz \
  && tar -xvf node-v18.0.0-linux-x64.tar.xz \
- && cp -r node-v18.0.0-linux-x64/{bin,include,lib,share} /usr/ \
+ && cp -r node-v18.0.0-linux-x64/bin /usr/ \
+ && cp -r node-v18.0.0-linux-x64/include /usr/ \
+ && cp -r node-v18.0.0-linux-x64/lib /usr/ \
+ && cp -r node-v18.0.0-linux-x64/share /usr/ \
  && node --version => v18.0.0 \
+ && rm -rf /tmp/node-v18.0.0-linux* \
  && apt-get update \
  && apt-get install mongodb-org-tools nodejs -y \
  && apt-get --purge autoremove curl -y \
