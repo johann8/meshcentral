@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set variables
-_VERSION=1.0.44
+_VERSION=1.0.46
 
 # create build
 docker build -t johann8/meshcentral:${_VERSION} .
