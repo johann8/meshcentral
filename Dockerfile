@@ -12,14 +12,14 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
  && curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
  && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
  && cd /tmp \
- && curl -LO https://nodejs.org/dist/v18.0.0/node-v18.0.0-linux-x64.tar.xz \
- && tar -xvf node-v18.0.0-linux-x64.tar.xz \
- && cp -r node-v18.0.0-linux-x64/bin /usr/ \
- && cp -r node-v18.0.0-linux-x64/include /usr/ \
- && cp -r node-v18.0.0-linux-x64/lib /usr/ \
- && cp -r node-v18.0.0-linux-x64/share /usr/ \
- && node --version => v18.0.0 \
- && rm -rf /tmp/node-v18.0.0-linux* \
+ && curl -LO https://nodejs.org/dist/v18.4.0/node-v18.4.0-linux-x64.tar.xz \
+ && tar -xvf node-v18.4.0-linux-x64.tar.xz \
+ && cp -r node-v18.4.0-linux-x64/bin /usr/ \
+ && cp -r node-v18.4.0-linux-x64/include /usr/ \
+ && cp -r node-v18.4.0-linux-x64/lib /usr/ \
+ && cp -r node-v18.4.0-linux-x64/share /usr/ \
+ && node --version => v18.4.0 \
+ && rm -rf /tmp/node-v18.4.0-linux* \
  && apt-get update \
  && apt-get install mongodb-org-tools nodejs -y \
  && apt-get --purge autoremove curl -y \
@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 1.0.39
+# Update to Version 1.0.41
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
