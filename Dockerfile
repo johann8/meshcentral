@@ -8,8 +8,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 #install dependencies
 #RUN apt-get update && apt-get install -y nodejs npm nano \
 RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
- && apt-get install -y curl \ 
- && curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
+ && apt-get install -y curl wget \ 
+ #&& curl -fsSL https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - \
+ && curl -sL https://www.mongodb.org/static/pgp/server-4.4.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/server-4.4.gpg  >/dev/null \
  && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
  && cd /tmp \
  && curl -LO https://nodejs.org/dist/v18.4.0/node-v18.4.0-linux-x64.tar.xz \
@@ -20,9 +21,16 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
  && cp -r node-v18.4.0-linux-x64/share /usr/ \
  && node --version => v18.4.0 \
  && rm -rf /tmp/node-v18.4.0-linux* \
+ #&& wget https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh \
+ #&& bash install.sh \
+ #&& . /root/.bashrc \
+ #&& nvm install v18.4.0 \
+ #&& node -v \
+ #&& rm -rf install.sh \
  && apt-get update \
- && apt-get install mongodb-org-tools nodejs -y \
- && apt-get --purge autoremove curl -y \
+ && apt-get dist-upgrade -y \
+ && apt-get install mongodb-org-tools -y \
+ && apt-get --purge autoremove curl wget -y \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
@@ -34,6 +42,9 @@ RUN mkdir -p /opt/meshcentral
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
+
+# Update npm
+RUN npm install -g npm@8.13.1
 
 #Copy config template and startup script
 COPY config.json.template /opt/meshcentral/config.json.template
