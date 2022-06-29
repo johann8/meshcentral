@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # set variables
-_VERSION=1.0.65
+_VERSION=1.0.66
 
 # create build
 docker build -t johann8/meshcentral:${_VERSION} .
@@ -35,3 +35,6 @@ if [ ${_PUSH=} = 0 ]; then
    docker rmi ubuntu
    docker images -a
 fi
+
+# Delete none images
+# docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
