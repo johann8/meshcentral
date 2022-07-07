@@ -34,6 +34,9 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
+# Update npm
+RUN npm install -g npm@8.13.2
+
 #Add non-root user, add installation directories and assign proper permissions
 RUN mkdir -p /opt/meshcentral
 
@@ -44,7 +47,7 @@ WORKDIR /opt/meshcentral
 RUN npm install meshcentral
 
 # Update npm
-RUN npm install -g npm@8.13.1
+#RUN npm install -g npm@8.13.1
 
 #Copy config template and startup script
 COPY config.json.template /opt/meshcentral/config.json.template
