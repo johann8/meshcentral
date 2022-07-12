@@ -5,6 +5,8 @@ FROM ubuntu:latest
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
+ENV NODE_VERSION v18.5.0
+
 #install dependencies
 #RUN apt-get update && apt-get install -y nodejs npm nano \
 RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
@@ -13,18 +15,18 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
  && curl -sL https://www.mongodb.org/static/pgp/server-4.4.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/server-4.4.gpg  >/dev/null \
  && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list \
  && cd /tmp \
- && curl -LO https://nodejs.org/dist/v18.4.0/node-v18.4.0-linux-x64.tar.xz \
- && tar -xvf node-v18.4.0-linux-x64.tar.xz \
- && cp -r node-v18.4.0-linux-x64/bin /usr/ \
- && cp -r node-v18.4.0-linux-x64/include /usr/ \
- && cp -r node-v18.4.0-linux-x64/lib /usr/ \
- && cp -r node-v18.4.0-linux-x64/share /usr/ \
- && node --version => v18.4.0 \
- && rm -rf /tmp/node-v18.4.0-linux* \
+ && curl -LO https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.xz \
+ && tar -xvf node-${NODE_VERSION}-linux-x64.tar.xz \
+ && cp -r node-${NODE_VERSION}-linux-x64/bin /usr/ \
+ && cp -r node-${NODE_VERSION}-linux-x64/include /usr/ \
+ && cp -r node-${NODE_VERSION}-linux-x64/lib /usr/ \
+ && cp -r node-${NODE_VERSION}-linux-x64/share /usr/ \
+ && node --version => ${NODE_VERSION} \
+ && rm -rf /tmp/node-${NODE_VERSION}-linux* \
  #&& wget https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh \
  #&& bash install.sh \
  #&& . /root/.bashrc \
- #&& nvm install v18.4.0 \
+ #&& nvm install ${NODE_VERSION} \
  #&& node -v \
  #&& rm -rf install.sh \
  && apt-get update \
