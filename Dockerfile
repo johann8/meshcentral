@@ -41,7 +41,7 @@ RUN npm install -g npm@8.13.2
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 1.0.50
+# Update to Version 1.0.51
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
