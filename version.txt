@@ -1,2 +1,2 @@
 # Docker Version
-v1.0.92
+v1.0.93
