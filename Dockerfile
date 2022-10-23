@@ -43,7 +43,7 @@ RUN npm install -g npm@8.13.2
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 1.0.85
+# Update to Version 1.0.86
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
@@ -56,7 +56,7 @@ COPY config.json.template /opt/meshcentral/config.json.template
 COPY startup.sh startup.sh
 #environment variables
 
-EXPOSE 80 443
+EXPOSE 80 443 4433
 
 #volumes
 VOLUME /opt/meshcentral/meshcentral-data
