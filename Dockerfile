@@ -37,13 +37,13 @@ RUN apt-get update && apt-get install -y gnupg2 nano iputils-ping tar xz-utils \
  && rm -rf /var/lib/apt/lists/*
 
 # Update npm
-RUN npm install -g npm@8.13.2
+RUN npm install -g npm@8.19.2
 
 #Add non-root user, add installation directories and assign proper permissions
 RUN mkdir -p /opt/meshcentral
 
 #meshcentral installation
-# Update to Version 1.0.89
+# Update to Version 1.0.91
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
