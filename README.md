@@ -6,7 +6,7 @@ Image is based on [Ubuntu 22](https://hub.docker.com/repository/docker/johann8/m
 
 | pull | size ubuntu | version | platform |
 |:---------------------------------:|:--------------------------------:|:----------------------------------:|:--------------------------------:|
-| ![Docker Pulls](https://img.shields.io/docker/pulls/johann8/meshcentral?style=flat-square) | ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/johann8/bacularis/latest-ubuntu) | [![](https://img.shields.io/docker/v/johann8/meshcentral?sort=date)](https://hub.docker.com/r/johann8/meshcentral/tags "Version badge") | ![](https://img.shields.io/badge/platform-amd64-blue "Platform badge") |
+| ![Docker Pulls](https://img.shields.io/docker/pulls/johann8/meshcentral?style=flat-square) | ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/johann8/meshcentral/latest) | [![](https://img.shields.io/docker/v/johann8/meshcentral?sort=date)](https://hub.docker.com/r/johann8/meshcentral/tags "Version badge") | ![](https://img.shields.io/badge/platform-amd64-blue "Platform badge") |
 
 
 ## About
