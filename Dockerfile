@@ -5,7 +5,7 @@ FROM ubuntu:latest
 # Disable Prompt During Packages Installation
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV NODE_VERSION v18.5.0
+ENV NODE_VERSION v18.16.0
 
 #install dependencies
 #RUN apt-get update && apt-get install -y nodejs npm nano \
@@ -47,9 +47,6 @@ RUN mkdir -p /opt/meshcentral
 WORKDIR /opt/meshcentral
 
 RUN npm install meshcentral
-
-# Update npm
-#RUN npm install -g npm@8.13.1
 
 #Copy config template and startup script
 COPY config.json.template /opt/meshcentral/config.json.template
